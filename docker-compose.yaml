@@ -1,0 +1,30 @@
+version: "2"
+
+services:
+  coredns:
+    container_name: coredns
+    image: coredns/coredns
+    command: -conf /data/Corefile
+    ports:
+      - "443:443/tcp"
+      - "853:853/tcp"
+    volumes:
+      - ./data:/data:ro
+      - ./ads.list:/ads.list:ro
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    read_only: true
+    restart: unless-stopped
+    depends_on: 
+      - adlist
+
+  adlist:
+    container_name: adlist
+    image: python:3-slim-buster
+    command: python /download-lists.py /ads.list 
+    volumes:
+      - ./download-lists.py:/download-lists.py:ro
+      - ./ads.list:/ads.list
+
