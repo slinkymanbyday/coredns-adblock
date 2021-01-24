@@ -5,7 +5,6 @@ import urllib.request
 
 adlists = [
     'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts',
-    'https://mirror1.malwaredomains.com/files/justdomains',
     'http://sysctl.org/cameleon/hosts',
     'https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt',
     'https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt',
